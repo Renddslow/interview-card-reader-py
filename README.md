@@ -5,25 +5,25 @@ DMSi has a secure access room with a card reader on each side. You must scan to 
 Our logs are formatted as a list of scan log dicts. Each log contains the employee name and the type of scan that was recorded, `enter` or `exit`.
 
 ```python
-[
+(
   { "employee": "Paul", "scan": "enter" },
   { "employee": "Mary", "scan": "enter" },
   { "employee": "Mary", "scan": "exit" },
   { "employee": "Paul", "scan": "exit" },
-]
+)
 ```
 
 We want to get a tuple where the first item is a list of employee names whose exits failed to log, and the second item is a list of employee names whose entries failed to log.
 
 ```python
-[
+(
   [
     # exits
   ],
   [
     # entries
   ],
-]
+)
 ```
 
 An example would be the case of Paul this morning. He scanned into the room, presumably spent some time in there, and then left. However, his exit did not log.
@@ -41,7 +41,7 @@ An example would be the case of Paul this morning. He scanned into the room, pre
 Given this log, we would want to return a tuple that looks like this:
 
 ```python
-[["Paul"], []]
+(["Paul"], [])
 ```
 
 Importantly, the room is physically empty at the start and end of the day. So we can be certain that if a person's first entry is an `exit` or last entry is an `enter` that they are missing a log.
